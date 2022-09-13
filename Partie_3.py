@@ -6,11 +6,11 @@ def mot_correspond(mot: str, motif: str) -> bool:
     Fonction testant la correspondance entre une chaine de caractère et un motif donné les "." du motif etant des
     jockers
     :param mot:
-    :type mot:
+    :type mot: str
     :param motif:
-    :type motif:
+    :type motif: str
     :return:
-    :rtype:
+    :rtype: bool
     """
     flag_motif_correspond = True
     if len(motif) != len(mot):
@@ -26,7 +26,7 @@ JDT6 = [("tarte", "t..t."),
         ("cheval", "c..v..l"),
         ("cheval", "c..v.l")]
 
-Partie_1_et_2.testeur_de_fonction_2_arg(mot_correspond, JDT6)
+Partie_1_et_2.testeur_de_fonction(mot_correspond, JDT6, arg_nb=2)
 
 
 def presente(lettre: str, mot: str) -> int:
@@ -34,11 +34,11 @@ def presente(lettre: str, mot: str) -> int:
     Fonction renvoyan un entier représentant l'indice de la lettre passée en paramètre dans le str mot. La foncction
     renvoie -1 si la lettre n'est pas trouveé
     :param lettre:
-    :type lettre:
+    :type lettre: str
     :param mot:
-    :type mot:
+    :type mot: str
     :return:
-    :rtype:
+    :rtype: int
     """
     emplacement_lettre = -1
     for i in range(len(mot)):
@@ -53,18 +53,18 @@ JDT7 = [("t", "tarte"),
         ("l", "cheval"),
         ("z", "cheval")]
 
-Partie_1_et_2.testeur_de_fonction_2_arg(presente, JDT7)
+Partie_1_et_2.testeur_de_fonction(presente, JDT7, arg_nb=2)
 
 
 def mot_possible(mot: str, lettres: str) -> bool:
     """
     Renvoie True ou False suivant que le mot peut s'obtenire avec les lettres passées en param
     :param mot:
-    :type mot:
+    :type mot: str
     :param lettres:
-    :type lettres:
+    :type lettres: str
     :return:
-    :rtype:
+    :rtype: str
     """
     lettres_splite = [*lettres]
     flag_mot_possible = True
@@ -80,7 +80,7 @@ def mot_possible(mot: str, lettres: str) -> bool:
 JDT7 = [("chapeau", "abcehpuv"),
         ("chapeau", "abcehpuva")]
 
-Partie_1_et_2.testeur_de_fonction_2_arg(mot_possible, JDT7)
+Partie_1_et_2.testeur_de_fonction(mot_possible, JDT7, arg_nb=2)
 
 
 def mot_optimaux(dico: list[str], lettres: str) -> list[str]:
@@ -88,11 +88,11 @@ def mot_optimaux(dico: list[str], lettres: str) -> list[str]:
     Renvoie une liste des mots de longueur maximale présents dans la liste dico que l'on peut fire avec les lettres
     passées en paramètre
     :param dico:
-    :type dico:
+    :type dico: list[str]
     :param lettres:
-    :type lettres:
+    :type lettres: str
     :return:
-    :rtype:
+    :rtype: list[str]
     """
     l_mots = []
     i = len(lettres)
@@ -116,9 +116,9 @@ def ouvrante(car: str) -> bool:
     """
     Renvoie un booléen indiquant si le paramettre est une parenthèse "("
     :param car:
-    :type car:
+    :type car: str
     :return:
-    :rtype:
+    :rtype: bool
     """
     return car == "(" or car == "[" or car == "{"
 
@@ -127,9 +127,9 @@ def fermante(car: str) -> bool:
     """
     Renvoie un booléen indiquant si le paramettre est une parenthèse ")"
     :param car:
-    :type car:
+    :type car: str
     :return:
-    :rtype:
+    :rtype: bool
     """
     return car == ")" or car == "]" or car == "}"
 
@@ -138,9 +138,9 @@ def reverse(car: str) -> str:
     """
     Renvoie un caractère fermant selon que le parametre soit une parenthèse ouvrante, un crochet, etc...
     :param car:
-    :type car:
+    :type car: str
     :return:
-    :rtype:
+    :rtype: str
     """
     DICO_OUVRANTE_FERMANTE = {"(": ")", "[": "]", "{": "}"}
     if ouvrante(car):
@@ -162,20 +162,20 @@ def operateur(car: str) -> bool:
     """
     Renvoie True si "car" est * ou + et False sinon
     :param car:
-    :type car:
+    :type car: str
     :return:
-    :rtype:
+    :rtype: bool
     """
     return car == "*" or car == "+" or car == "-" or car == "\\"
 
 
 def nombre(car: str) -> bool:
     """
-    Renvoie un booléen indiquant si la hine est un nombre
+    Renvoie un booléen indiquant si la chaine est un nombre
     :param car:
-    :type car:
+    :type car: str
     :return:
-    :rtype:
+    :rtype: bool
     """
     flag_nombre = True
     CHIFFRES = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -191,9 +191,9 @@ def caracter_valide(car: str) -> bool:
     """
     Renvoie True si le caractère est valide dans une expression arithmétique
     :param car:
-    :type car:
+    :type car: str
     :return:
-    :rtype:
+    :rtype: bool
     """
     return ouvrante(car) or fermante(car) or operateur(car) or nombre(car) or car == " "
 
@@ -202,9 +202,9 @@ def verif_parenthese(expression: str) -> bool:
     """
     Verifie si l'expression passée en paramètre contient des caractères valides et est correctement parenthésé ou non
     :param expression:
-    :type expression:
+    :type expression: str
     :return:
-    :rtype:
+    :rtype: bool
     """
     liste_p = []
     flag_validite = True
