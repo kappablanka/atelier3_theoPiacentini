@@ -14,7 +14,7 @@ def full_name(str_arg: str) -> str:
     return f"{str_arg_splitter[0].upper()} {str_arg_splitter[1].capitalize()}"
 
 
-def testeur_de_fonction_sur_str(funct, jeu_de_tests):
+def testeur_de_fonction(funct, jeu_de_tests):
     """
     Fonction permettant de tester la fonction message_imc()
     :return: void
@@ -24,7 +24,7 @@ def testeur_de_fonction_sur_str(funct, jeu_de_tests):
     print("\n")
 
 
-def testeur_de_fonction_sur_str_2_arg(funct, jeu_de_tests):
+def testeur_de_fonction_2_arg(funct, jeu_de_tests):
     """
     Fonction permettant de tester la fonction message_imc()
     :return: void
@@ -35,7 +35,7 @@ def testeur_de_fonction_sur_str_2_arg(funct, jeu_de_tests):
 
 
 JDT_1 = ["Piacentini Théo"]
-testeur_de_fonction_sur_str(full_name, JDT_1)
+testeur_de_fonction(full_name, JDT_1)
 
 print(full_name("theo Piacentini"))
 
@@ -112,7 +112,7 @@ JDT_2 = ["Piacentini Théo",
          "bisambigllia_paul@univ-corse.fr",
          "bisambigllia_paul@univ_corse.fr",
          "bisambigllia..paul@univ-corse.fr"]
-testeur_de_fonction_sur_str(is_mail, JDT_2)
+testeur_de_fonction(is_mail, JDT_2)
 
 
 def mots_n_lettres(lst_mot: list[str], n: int) -> list[str]:
@@ -139,7 +139,7 @@ JDT_3 = [(["jouer", "bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir",
              ["jouer", "bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour", "finir",
               "aimer"],
              6)]
-testeur_de_fonction_sur_str_2_arg(mots_n_lettres, JDT_3)
+testeur_de_fonction_2_arg(mots_n_lettres, JDT_3)
 
 
 def commence_par(mot: str, prefix: str) -> bool:
@@ -161,7 +161,7 @@ def commence_par(mot: str, prefix: str) -> bool:
 
 JDT_4 = [("aaaaaaa", "aaa"),
          ("aaaaaaa", "baa")]
-testeur_de_fonction_sur_str_2_arg(commence_par, JDT_4)
+testeur_de_fonction_2_arg(commence_par, JDT_4)
 
 
 def finit_par(mot: str, suffix: str) -> bool:
@@ -181,7 +181,7 @@ def finit_par(mot: str, suffix: str) -> bool:
     return flag_suffix_present
 
 
-testeur_de_fonction_sur_str_2_arg(finit_par, JDT_4)
+testeur_de_fonction_2_arg(finit_par, JDT_4)
 
 
 def finissent_par(lst_mot: list[str], suffix: str) -> list[str]:
@@ -266,7 +266,7 @@ JDT_5 = [('b', 'bonjour'),
          ('a', 'bonjour'),
          ('m', 'maman')]
 
-testeur_de_fonction_sur_str_2_arg(places_lettre, JDT_5)
+testeur_de_fonction_2_arg(places_lettre, JDT_5)
 
 
 def output_str(mot: str, lpos: list) -> str:
@@ -295,7 +295,7 @@ JDT_6 = [('bonjour', []),
          ('maman', [1, 3]),
          ('bon', [0, 1, 2])]
 
-testeur_de_fonction_sur_str_2_arg(output_str, JDT_6)
+testeur_de_fonction_2_arg(output_str, JDT_6)
 
 C5 = "|---] "
 C4 = "| O "

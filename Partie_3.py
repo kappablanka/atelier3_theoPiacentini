@@ -22,21 +22,11 @@ def mot_correspond(mot: str, motif: str) -> bool:
     return flag_motif_correspond
 
 
-def testeur_de_fonction_2_arg(funct, jeu_de_tests):
-    """
-    Fonction permettant de tester les fonctions à deux arguments
-    :return: void
-    """
-    for e in jeu_de_tests:
-        print(f"{funct.__name__}({e[0]}, {e[1]}) = {funct(e[0], e[1])}")
-    print("\n")
-
-
 JDT6 = [("tarte", "t..t."),
         ("cheval", "c..v..l"),
         ("cheval", "c..v.l")]
 
-testeur_de_fonction_2_arg(mot_correspond, JDT6)
+Partie_1_et_2.testeur_de_fonction_2_arg(mot_correspond, JDT6)
 
 
 def presente(lettre: str, mot: str) -> int:
@@ -63,7 +53,7 @@ JDT7 = [("t", "tarte"),
         ("l", "cheval"),
         ("z", "cheval")]
 
-testeur_de_fonction_2_arg(presente, JDT7)
+Partie_1_et_2.testeur_de_fonction_2_arg(presente, JDT7)
 
 
 def mot_possible(mot: str, lettres: str) -> bool:
@@ -90,7 +80,7 @@ def mot_possible(mot: str, lettres: str) -> bool:
 JDT7 = [("chapeau", "abcehpuv"),
         ("chapeau", "abcehpuva")]
 
-testeur_de_fonction_2_arg(mot_possible, JDT7)
+Partie_1_et_2.testeur_de_fonction_2_arg(mot_possible, JDT7)
 
 
 def mot_optimaux(dico: list[str], lettres: str) -> list[str]:
@@ -120,3 +110,119 @@ listes_capitales = Partie_1_et_2.build_list("capitales.txt")
 print(listes_capitales)
 
 print(mot_optimaux(listes_capitales, "paris"))
+
+
+def ouvrante(car: str) -> bool:
+    """
+    Renvoie un booléen indiquant si le paramettre est une parenthèse "("
+    :param car:
+    :type car:
+    :return:
+    :rtype:
+    """
+    return car == "(" or car == "[" or car == "{"
+
+
+def fermante(car: str) -> bool:
+    """
+    Renvoie un booléen indiquant si le paramettre est une parenthèse ")"
+    :param car:
+    :type car:
+    :return:
+    :rtype:
+    """
+    return car == ")" or car == "]" or car == "}"
+
+
+def reverse(car: str) -> str:
+    """
+    Renvoie un caractère fermant selon que le parametre soit une parenthèse ouvrante, un crochet, etc...
+    :param car:
+    :type car:
+    :return:
+    :rtype:
+    """
+    DICO_OUVRANTE_FERMANTE = {"(": ")", "[": "]", "{": "}"}
+    if ouvrante(car):
+        return DICO_OUVRANTE_FERMANTE[car]
+    elif fermante(car):
+        for k, v in DICO_OUVRANTE_FERMANTE.items():
+            if v == car:
+                return k
+    else:
+        return car
+
+
+JDT8 = ["(", "]", "a"]
+
+Partie_1_et_2.testeur_de_fonction(reverse, JDT8)
+
+
+def operateur(car: str) -> bool:
+    """
+    Renvoie True si "car" est * ou + et False sinon
+    :param car:
+    :type car:
+    :return:
+    :rtype:
+    """
+    return car == "*" or car == "+" or car == "-" or car == "\\"
+
+
+def nombre(car: str) -> bool:
+    """
+    Renvoie un booléen indiquant si la hine est un nombre
+    :param car:
+    :type car:
+    :return:
+    :rtype:
+    """
+    flag_nombre = True
+    CHIFFRES = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+    for e in car:
+        if e not in CHIFFRES:
+            flag_nombre = False
+
+    return flag_nombre
+
+
+def caracter_valide(car: str) -> bool:
+    """
+    Renvoie True si le caractère est valide dans une expression arithmétique
+    :param car:
+    :type car:
+    :return:
+    :rtype:
+    """
+    return ouvrante(car) or fermante(car) or operateur(car) or nombre(car) or car == " "
+
+
+def verif_parenthese(expression: str) -> bool:
+    """
+    Verifie si l'expression passée en paramètre contient des caractères valides et est correctement parenthésé ou non
+    :param expression:
+    :type expression:
+    :return:
+    :rtype:
+    """
+    liste_p = []
+    flag_validite = True
+    for e in expression:
+        if not caracter_valide(e):
+            print("aaaa")
+            flag_validite = False
+        elif ouvrante(e):
+            liste_p.append(e)
+        elif fermante(e) and liste_p[-1] == reverse(e):
+            liste_p.pop()
+    if len(liste_p) > 0:
+        flag_validite = False
+    return flag_validite
+
+
+JDT10 = ["(3+2)*6-1",
+         "((3+2)*6-1",
+         "(5+7]*12"]
+
+Partie_1_et_2.testeur_de_fonction(verif_parenthese, JDT10)
