@@ -1,3 +1,6 @@
+import random
+
+
 def full_name(str_arg: str) -> str:
     """
     Renvoie un nom prénom en ajoutant les majusculs
@@ -95,6 +98,9 @@ def is_mail(str_arg: str) -> (int, int):
         validite, erreur = 0, 3
 
     return validite, erreur
+
+
+# A refactorer
 
 
 JDT_2 = ["Piacentini Théo",
@@ -214,9 +220,150 @@ def liste_mots(lst_mot: list[str], prefix: str, suffix: str, n: int) -> list[str
     return tab_resultat
 
 
-def dictionnaire(fichier: str):
-    f = open("profs.txt", "r")
+def dictionnaire(fichier: str) -> list[str]:
+    """
+    Fonction retournant la liste des mots d'un dictionnaire en txt
+    :param fichier: de l'amplacement d'un fichier txt représentant un dictionnaire
+    :type fichier: str
+    :return: liste des mots du dictionnaire
+    :rtype: list[str]
+    """
+    f = open(fichier, "r")
+    lis_mots = []
     c = f.readline()
     while c != "":
-        print(c)
+        for e in c.split(" "):
+            lis_mots.append(e)
         c = f.readline()
+
+    return lis_mots
+
+
+dico = dictionnaire("littre.txt")
+
+
+# Partie 2
+
+
+def places_lettre(ch: str, mot: str) -> list:
+    """
+    Recherche si le caractère est présent.
+    :param ch: car d'une lettre
+    :type ch: str
+    :param mot: str d'un mot
+    :type mot: str
+    :return:
+    :rtype: list
+    """
+    liste_emplacements = []
+    for i in range(len(mot)):
+        if ch == mot[i]:
+            liste_emplacements.append(i)
+    return liste_emplacements
+
+
+JDT_5 = [('b', 'bonjour'),
+         ('a', 'bonjour'),
+         ('m', 'maman')]
+
+testeur_de_fonction_sur_str_2_arg(places_lettre, JDT_5)
+
+
+def output_str(mot: str, lpos: list) -> str:
+    """
+    Renvoie un mot un cachant les car present dans les indices d'une list d'int
+    :param mot: mot
+    :type mot: str
+    :param lpos: liste des entiers représentants les indices des caractères de la chaine de mot à afficher
+    :type lpos: list
+    :return:
+    :rtype: str
+    """
+    mot_cache = ""
+    for i in range(len(mot)):
+        if i in lpos:
+            mot_cache += mot[i]
+        else:
+            mot_cache += "_"
+
+    return mot_cache
+
+
+JDT_6 = [('bonjour', []),
+         ('bonjour', [0]),
+         ('bonjour', [0, 1, 4]),
+         ('maman', [1, 3]),
+         ('bon', [0, 1, 2])]
+
+testeur_de_fonction_sur_str_2_arg(output_str, JDT_6)
+
+C5 = "|---] "
+C4 = "| O "
+C3 = "| T "
+C2 = "|/ \ "
+C1 = "|______"
+pendu = [C1, C2, C3, C4, C5]
+
+
+def run_game():
+    """
+    Programme principal devant:
+    Déclarer une liste de mots
+    Tirer aléatoirement un mot de la liste
+    Afficher la chaine de tirets représentant le nb de car du mot sous la forme :
+    paris = _____
+    jusqu'à ce que le mmot soit trouvé ou le pendu dessiné (5 erreurs)
+    Demander à l'utilisateur une lettre
+    Rechercher la place de la lettre dans le mot
+    afficher l'etat actuel du mot
+    afficher le dessin du pendu correspondant complété en cas d'erreur
+    afficher le nombre de coups restant
+    :return:
+    :rtype:
+    """
+    l_mots = ['paris', 'londres', 'madrid', 'berlin', 'new york']
+
+    mot_tire = random.choice(l_mots)
+    print(f"mot tiré  = {mot_tire}")
+    nb_erreurs = 0
+    flag_mot_trouve = False
+    empl_lettres_trouve = []
+    while nb_erreurs < 5 and not flag_mot_trouve:
+        print(output_str(mot_tire, empl_lettres_trouve))
+        lettre_choisie = input("donnez une lettre : ")
+        l_emplacement_lettres = places_lettre(lettre_choisie, mot_tire)
+        if len(l_emplacement_lettres) != 0:
+            for e in l_emplacement_lettres:
+                empl_lettres_trouve.append(e)
+        else:
+            nb_erreurs += 1
+
+        if nb_erreurs > 0:
+            for i in range(nb_erreurs, 0, -1):
+                print(pendu[i])
+            print(f"nombre de coups restant : {5 - nb_erreurs}")
+
+        if len(empl_lettres_trouve) == len(mot_tire):
+            print("bravo")
+            flag_mot_trouve = True
+
+
+def build_list(file_name: str) -> list:
+    """
+    Prend en paramètre un nom de fichier et construit automatiquement la liste des mots
+    :param file_name:
+    :type file_name:
+    :return:
+    :rtype:
+    """
+    f = open(file_name, "r")
+    lis_mots = []
+    c = f.readline()
+    while c != "":
+        c = f.readline()
+        lis_mots.append(c[:-1].lower())
+    return lis_mots
+
+
+liste_capitales = build_list("capitales.txt")
+print(liste_capitales)
