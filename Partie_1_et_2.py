@@ -14,23 +14,17 @@ def full_name(str_arg: str) -> str:
     return f"{str_arg_splitter[0].upper()} {str_arg_splitter[1].capitalize()}"
 
 
-def testeur_de_fonction(funct, jeu_de_tests):
+def testeur_de_fonction(funct, jeu_de_tests, arg_nb=1):
     """
-    Fonction permettant de tester la fonction message_imc()
+    Fonction permettant de tester d'autres fonctions
     :return: void
     """
-    for e in jeu_de_tests:
-        print(f"{funct.__name__}({e}) = {funct(e)}")
-    print("\n")
-
-
-def testeur_de_fonction_2_arg(funct, jeu_de_tests):
-    """
-    Fonction permettant de tester la fonction message_imc()
-    :return: void
-    """
-    for e in jeu_de_tests:
-        print(f"{funct.__name__}({e[0]}, {e[1]}) = {funct(e[0], e[1])}")
+    if arg_nb == 1:
+        for e in jeu_de_tests:
+            print(f"{funct.__name__}({e}) = {funct(e)}")
+    elif arg_nb == 2:
+        for e in jeu_de_tests:
+            print(f"{funct.__name__}({e[0]}, {e[1]}) = {funct(e[0], e[1])}")
     print("\n")
 
 
@@ -139,19 +133,10 @@ JDT_3 = [(["jouer", "bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir",
              ["jouer", "bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour", "finir",
               "aimer"],
              6)]
-testeur_de_fonction_2_arg(mots_n_lettres, JDT_3)
+testeur_de_fonction(mots_n_lettres, JDT_3, arg_nb=2)
 
 
 def commence_par(mot: str, prefix: str) -> bool:
-    """
-
-    :param mot:
-    :type mot:
-    :param prefix:
-    :type prefix:
-    :return:
-    :rtype:
-    """
     flag_prefix_present = True
     for i in range(len(prefix)):
         if mot[i] != prefix[i]:
@@ -161,7 +146,7 @@ def commence_par(mot: str, prefix: str) -> bool:
 
 JDT_4 = [("aaaaaaa", "aaa"),
          ("aaaaaaa", "baa")]
-testeur_de_fonction_2_arg(commence_par, JDT_4)
+testeur_de_fonction(commence_par, JDT_4, arg_nb=2)
 
 
 def finit_par(mot: str, suffix: str) -> bool:
@@ -181,7 +166,7 @@ def finit_par(mot: str, suffix: str) -> bool:
     return flag_suffix_present
 
 
-testeur_de_fonction_2_arg(finit_par, JDT_4)
+testeur_de_fonction(finit_par, JDT_4, arg_nb=2)
 
 
 def finissent_par(lst_mot: list[str], suffix: str) -> list[str]:
@@ -266,7 +251,7 @@ JDT_5 = [('b', 'bonjour'),
          ('a', 'bonjour'),
          ('m', 'maman')]
 
-testeur_de_fonction_2_arg(places_lettre, JDT_5)
+testeur_de_fonction(places_lettre, JDT_5, arg_nb=2)
 
 
 def output_str(mot: str, lpos: list) -> str:
@@ -295,7 +280,7 @@ JDT_6 = [('bonjour', []),
          ('maman', [1, 3]),
          ('bon', [0, 1, 2])]
 
-testeur_de_fonction_2_arg(output_str, JDT_6)
+testeur_de_fonction(output_str, JDT_6, arg_nb=2)
 
 C5 = "|---] "
 C4 = "| O "
@@ -319,7 +304,6 @@ def run_game():
     :return:
     :rtype:
     """
-    mot_tire = "erreur"
     liste_des_capitales = build_list("capitales.txt")
     dico_capital_trie = build_dict(liste_capitales)
     choix = input("1 = listes des capitales complete, 2 = choix de la difficulté : ")
