@@ -316,26 +316,23 @@ def run_game():
     Demander à l'utilisateur une lettre
     Rechercher la place de la lettre dans le mot
     afficher l'etat actuel du mot
-    afficher le dessin du pendu correspondant complété en cas d'erreur
-    afficher le nombre de coups restant
     :return:
     :rtype:
     """
     mot_tire = "erreur"
     liste_des_capitales = build_list("capitales.txt")
     dico_capital_trie = build_dict(liste_capitales)
-    choix = input("1 = listes des capitales complete, 2 = choix de la difficulté")
-    if choix == 1:
+    choix = input("1 = listes des capitales complete, 2 = choix de la difficulté : ")
+    if choix == "1":
         mot_tire = random.choice(liste_des_capitales)
     else:
-        difficulte = input("facile = 1, normal  = 2, difficile = 3")
-        if difficulte == 1:
-            select_word(dico_capital_trie, random.randint(4, 7))
-        elif difficulte == 2:
-            select_word(dico_capital_trie, random.randint(7, 10))
+        difficulte = input("facile = 1, normal  = 2, difficile = 3 : ")
+        if difficulte == "1":
+            mot_tire = select_word(dico_capital_trie, random.randint(4, 7))
+        elif difficulte == "2":
+            mot_tire = select_word(dico_capital_trie, random.randint(7, 10))
         else:
-            select_word(dico_capital_trie, random.randint(7, 36))
-
+            mot_tire = select_word(dico_capital_trie, random.randint(8, 15))
 
     print(f"mot tiré  = {mot_tire}")
     nb_erreurs = 0
@@ -391,8 +388,10 @@ def build_dict(lst: list) -> dict:
         dictio[i] = mots_n_lettres(lst, i)
     return dictio
 
+
 liste_capitales = build_list("capitales.txt")
 print(build_dict(liste_capitales))
+
 
 def select_word(sorted_words: dict, word_len: int) -> str:
     """
@@ -403,5 +402,9 @@ def select_word(sorted_words: dict, word_len: int) -> str:
     :return:
     :rtype:
     """
-    return random.choice(sorted_words[word_len])
+    if 4 < word_len < 20:
+        return random.choice(sorted_words[word_len])
+    else:
+        return "erreur"
 
+run_game()
