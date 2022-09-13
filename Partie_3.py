@@ -204,7 +204,7 @@ def verif_parenthese(expression: str) -> bool:
     :param expression:
     :type expression: str
     :return:
-    :rtype: bool
+    :rtype:
     """
     liste_p = []
     flag_validite = True

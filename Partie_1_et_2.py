@@ -14,15 +14,10 @@ def full_name(str_arg: str) -> str:
     return f"{str_arg_splitter[0].upper()} {str_arg_splitter[1].capitalize()}"
 
 
-def testeur_de_fonction(funct, jeu_de_tests, arg_nb: int = 1):
+def testeur_de_fonction(funct, jeu_de_tests, arg_nb=1):
     """
-    Fonction testant une autre fonction
-    :param funct: foction à tester
-    :type funct: function
-    :param jeu_de_tests: jeu de test utilisé
-    :type jeu_de_tests: tuple ou un unique immutable
-    :param arg_nb: nombres d'arguments que la fonciton prends en compte
-    :type arg_nb: int
+    Fonction permettant de tester d'autres fonctions
+    :return: void
     """
     if arg_nb == 1:
         for e in jeu_de_tests:
@@ -33,7 +28,7 @@ def testeur_de_fonction(funct, jeu_de_tests, arg_nb: int = 1):
     print("\n")
 
 
-JDT_1 = ("Piacentini Théo")
+JDT_1 = ["Piacentini Théo"]
 testeur_de_fonction(full_name, JDT_1)
 
 print(full_name("theo Piacentini"))
@@ -158,11 +153,11 @@ def finit_par(mot: str, suffix: str) -> bool:
     """
 
     :param mot:
-    :type mot: str
+    :type mot:
     :param suffix:
-    :type suffix: str
+    :type suffix:
     :return:
-    :rtype: bool
+    :rtype:
     """
     flag_suffix_present = True
     for i in range(len(suffix)):
@@ -193,15 +188,15 @@ def commencent_par(lst_mot: list[str], prefix: str) -> list[str]:
 def liste_mots(lst_mot: list[str], prefix: str, suffix: str, n: int) -> list[str]:
     """
     :param lst_mot:
-    :type lst_mot: list[str]
+    :type lst_mot:
     :param prefix:
     :type prefix:
     :param suffix:
-    :type suffix: str
+    :type suffix:
     :param n:
-    :type n: int
+    :type n:
     :return:
-    :rtype: list[str]
+    :rtype:
     """
     tab_resultat = []
     for e in lst_mot:
@@ -306,6 +301,8 @@ def run_game():
     Demander à l'utilisateur une lettre
     Rechercher la place de la lettre dans le mot
     afficher l'etat actuel du mot
+    :return:
+    :rtype:
     """
     liste_des_capitales = build_list("capitales.txt")
     dico_capital_trie = build_dict(liste_capitales)
@@ -349,9 +346,9 @@ def build_list(file_name: str) -> list:
     """
     Prend en paramètre un nom de fichier et construit automatiquement la liste des mots
     :param file_name:
-    :type file_name: str
+    :type file_name:
     :return:
-    :rtype: list
+    :rtype:
     """
     f = open(file_name, "r")
     lis_mots = []
@@ -366,9 +363,9 @@ def build_dict(lst: list) -> dict:
     """
 
     :param lst:
-    :type lst: list
+    :type lst:
     :return:
-    :rtype: dict
+    :rtype:
     """
     dictio = {}
     for i in range(1, 40):
@@ -383,11 +380,11 @@ print(build_dict(liste_capitales))
 def select_word(sorted_words: dict, word_len: int) -> str:
     """
     :param sorted_words:
-    :type sorted_words: dict
+    :type sorted_words:
     :param word_len:
-    :type word_len: int
+    :type word_len:
     :return:
-    :rtype: str
+    :rtype:
     """
     if 4 < word_len < 20:
         return random.choice(sorted_words[word_len])
