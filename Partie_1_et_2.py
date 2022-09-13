@@ -407,4 +407,4 @@ def select_word(sorted_words: dict, word_len: int) -> str:
     else:
         return "erreur"
 
-run_game()
+# run_game()
