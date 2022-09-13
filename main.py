@@ -321,9 +321,22 @@ def run_game():
     :return:
     :rtype:
     """
-    l_mots = ['paris', 'londres', 'madrid', 'berlin', 'new york']
+    mot_tire = "erreur"
+    liste_des_capitales = build_list("capitales.txt")
+    dico_capital_trie = build_dict(liste_capitales)
+    choix = input("1 = listes des capitales complete, 2 = choix de la difficulté")
+    if choix == 1:
+        mot_tire = random.choice(liste_des_capitales)
+    else:
+        difficulte = input("facile = 1, normal  = 2, difficile = 3")
+        if difficulte == 1:
+            select_word(dico_capital_trie, random.randint(4, 7))
+        elif difficulte == 2:
+            select_word(dico_capital_trie, random.randint(7, 10))
+        else:
+            select_word(dico_capital_trie, random.randint(7, 36))
 
-    mot_tire = random.choice(l_mots)
+
     print(f"mot tiré  = {mot_tire}")
     nb_erreurs = 0
     flag_mot_trouve = False
@@ -365,5 +378,30 @@ def build_list(file_name: str) -> list:
     return lis_mots
 
 
+def build_dict(lst: list) -> dict:
+    """
+
+    :param lst:
+    :type lst:
+    :return:
+    :rtype:
+    """
+    dictio = {}
+    for i in range(1, 40):
+        dictio[i] = mots_n_lettres(lst, i)
+    return dictio
+
 liste_capitales = build_list("capitales.txt")
-print(liste_capitales)
+print(build_dict(liste_capitales))
+
+def select_word(sorted_words: dict, word_len: int) -> str:
+    """
+    :param sorted_words:
+    :type sorted_words:
+    :param word_len:
+    :type word_len:
+    :return:
+    :rtype:
+    """
+    return random.choice(sorted_words[word_len])
+
