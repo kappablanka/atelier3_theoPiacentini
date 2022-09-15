@@ -166,7 +166,7 @@ def operateur(car: str) -> bool:
     :return:
     :rtype: bool
     """
-    return car == "*" or car == "+" or car == "-" or car == "\\"
+    return car == "*" or car == "+" or car == "-" or car == "/"
 
 
 def nombre(car: str) -> bool:
@@ -210,7 +210,6 @@ def verif_parenthese(expression: str) -> bool:
     flag_validite = True
     for e in expression:
         if not caracter_valide(e):
-            print("aaaa")
             flag_validite = False
         elif ouvrante(e):
             liste_p.append(e)
@@ -223,6 +222,18 @@ def verif_parenthese(expression: str) -> bool:
 
 JDT10 = ["(3+2)*6-1",
          "((3+2)*6-1",
-         "(5+7]*12"]
+         "(5+7]*12",
+         "aaaaaaaaaaaa",
+         "{{{{{",
+         "(3+2)*a-1",
+         "([{)]}",
+         "((()))",
+         "{([])}",
+         "{([]})",
+         "(1/2)",
+         "(5+7)/12"]
+
+# La division posait un problème ! On peut cependant enchainer les mêmes caractères corrects pour faire passer une
+# expression, mais la prise en compte de cette possibilité ne me semble pas être indiquée dans l'énoncé.
 
 Partie_1_et_2.testeur_de_fonction(verif_parenthese, JDT10)
